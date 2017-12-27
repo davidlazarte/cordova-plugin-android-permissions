@@ -36,20 +36,19 @@
  * Type for request the location authorization (AlwaysAuthorization or WhenInUseAuthorization)
  */
 enum AuthorizeRequestType {
-    
     AuthorizeRequestTypeAlwaysAuthorization = 1,
     AuthorizeRequestTypeWhenInUseAuthorization = 2    
 };
 
 
-@interface IOSCheckPermissions : NSObject
+@interface IOSCheckPermissions : CDVPlugin
 
 /**
  *  Get the global instance of ios-check-permission library.
  *
  *  @return instance of IOSCheckPermissions
  */
-+(instancetype)globalInstance;
++ (instancetype) globalInstance;
 
 
 /**
@@ -58,84 +57,11 @@ enum AuthorizeRequestType {
  *
  *  @param enableLogs YES for enable or NO to disable logs.
  */
--(void)enableCheckPermissionLogs:(BOOL)enableLogs;
+- (void)enableCheckPermissionLogs:(BOOL)enableLogs;
 
-/**
- *  Requests permission to access the operating system's Calendar.
- *
- *  @param successBlock Notifies success if permission was previously granted.
- *  @param failureBlock Notifies fault if permission was not granted.
- */
--(void)checkPermissionAccessForCalendar:(void(^)(void))successBlock
-                           failureBlock:(void(^)(void))failureBlock;
-
-/**
- *  Requests permission to access the operating system's calendar with notification of the status not
- *  determined until receive the user's permission.
- *
- *  @param successBlock             Notifies success if permission was previously granted.
- *  @param failureBlock             Notifies fault if permission was not granted.
- *  @param statusNotDeterminedBlock The status not determined before receive the user's permission.
- */
--(void)checkPermissionAccessForCalendar:(void(^)(void))successBlock
-                           failureBlock:(void(^)(void))failureBlock
-       authorizationStatusNotDetermined:(void(^)(void))statusNotDeterminedBlock;
-
-/**
- *  Requests permission to access the operating system's Reminder.
- *
- *  @param successBlock Notifies success if permission was previously granted.
- *  @param failureBlock Notifies fault if permission was not granted.
- */
--(void)checkPermissionAccessForReminder:(void(^)(void))successBlock
-                           failureBlock:(void(^)(void))failureBlock;
-
-
-/**
- *  Requests permission to access the operating system's Reminder with notification of the status not
- *  determined until receive the user's permission.
- *
- *  @param successBlock             Notifies success if permission was previously granted.
- *  @param failureBlock             Notifies fault if permission was not granted.
- *  @param statusNotDeterminedBlock The status not determined before receive the user's permission.
- */
--(void)checkPermissionAccessForReminder:(void(^)(void))successBlock
-                           failureBlock:(void(^)(void))failureBlock
-       authorizationStatusNotDetermined:(void(^)(void))statusNotDeterminedBlock;
-
-
-/**
- *  Requests permission to access the operating system's Gallery.
- *
- *  @param successBlock Notifies success if permission was previously granted.
- *  @param failureBlock Notifies fault if permission was not granted.
- */
--(void)checkPermissionAccessForGallery:(void (^) (void))successBlock
-                           failureBlock:(void (^) (void))failureBlock;
-
-
-/**
- *  Requests permission to access the operating system's Gallery with notification of the status not
- *  determined until receive the user's permission.
- *
- *  @param successBlock             Notifies success if permission was previously granted.
- *  @param failureBlock             Notifies fault if permission was not granted.
- *  @param statusNotDeterminedBlock The status not determined before receive the user's permission.
- */
--(void)checkPermissionAccessForGallery:(void (^) (void))successBlock
-                           failureBlock:(void (^) (void))failureBlock
-       authorizationStatusNotDetermined:(void(^)(void))statusNotDeterminedBlock;
-
-
-/**
- *  Requests permission to access the operating system's Location.
- *
- *  @param type            enum type for request the location authorization (AlwaysAuthorization or WhenInUseAuthorization)
- *  @param successBlock    Notifies success if permission was previously granted.
- *  @param failureBlock    Notifies fault if permission was not granted.
- */
--(void)checkPermissionAccessForLocation:(enum AuthorizeRequestType) type
-                                                  successBlock:(void (^) (void))successBlock
-                                                  failureBlock:(void (^) (void))failureBlock;
+- (void)checkPermissionAccessForCalendar:(CDVInvokedUrlCommand*)command;
+- (void)checkPermissionAccessForReminder:(CDVInvokedUrlCommand*)command;
+- (void)checkPermissionAccessForGallery:(CDVInvokedUrlCommand*)command;
+- (void)checkPermissionAccessForLocation:(CDVInvokedUrlCommand*)command;
 
 @end
