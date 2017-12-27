@@ -50,10 +50,7 @@
 
     <header-file src="src/ios/IOSCheckPermissions.h" />
     <source-file src="src/ios/IOSCheckPermissions.m" />
-    <framework src="Foundation.Foundation" />
-    <framework src="EventKit.EventKit" />
-    <framework src="AssetsLibrary.AssetsLibrary" />
-    <framework src="AVFoundation.AVFoundation" />
+    <framework src="EventKit.EventKit.framework" />
     <framework src="CoreLocation.framework" />
   </platform>
 
