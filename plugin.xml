@@ -43,7 +43,7 @@
     </js-module>
 
     <config-file target="config.xml" parent="/*">
-      <feature name="IOSCheckPermissions">
+      <feature name="Permissions">
         <param name="ios-package" value="IOSCheckPermissions" />
       </feature>
     </config-file>
