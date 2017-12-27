@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        id="cordova-plugin-android-permissions"
+        id="cordova-plugin-permissions"
         version="1.0.0">
 
   <name>Permissions</name>
 
-  <description>Android permissions support library.</description>
+  <description>Permissions support library.</description>
 
-  <author>Jason Yang</author>
+  <author>David Lazarte</author>
 
   <engines>
     <engine name="cordova" version=">=5.0.0"/>
@@ -38,9 +38,23 @@
 
   <!-- ios -->
   <platform name="ios">
-    <js-module src="www/permissions-dummy.js" name="Permissions">
+    <js-module src="www/ios/permissions.js" name="Permissions">
       <clobbers target="cordova.plugins.permissions" />
     </js-module>
+
+    <config-file target="config.xml" parent="/*">
+      <feature name="IOSCheckPermissions">
+        <param name="ios-package" value="IOSCheckPermissions" />
+      </feature>
+    </config-file>
+
+    <header-file src="src/ios/IOSCheckPermissions.h" />
+    <source-file src="src/ios/IOSCheckPermissions.m" />
+    <framework src="Foundation.Foundation" />
+    <framework src="EventKit.EventKit" />
+    <framework src="AssetsLibrary.AssetsLibrary" />
+    <framework src="AVFoundation.AVFoundation" />
+    <framework src="CoreLocation.framework" />
   </platform>
 
 </plugin>

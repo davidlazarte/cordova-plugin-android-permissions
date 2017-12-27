@@ -1,7 +1,7 @@
 {
-  "name": "cordova-plugin-android-permissions",
+  "name": "cordova-plugin-permissions",
   "version": "1.0.0",
-  "description": "Android 6.0 permissions check.",
+  "description": "Permissions check.",
   "cordova": {
     "id": "cordova-plugin-android-permissions",
     "platforms": [
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NeoLSN/cordova-plugin-android-permission.git"
+    "url": "git+https://github.com/davidlazarte/cordova-plugin-permissions.git"
   },
   "keywords": [
     "ecosystem:cordova",
@@ -26,10 +26,7 @@
       "version": ">=5.0.0"
     }
   ],
-  "author": "Jason Yang",
+  "author": "David Lazarte",
   "license": "BSD",
-  "bugs": {
-    "url": "https://github.com/NeoLSN/cordova-plugin-android-permission/issues"
-  },
-  "homepage": "https://github.com/NeoLSN/cordova-plugin-android-permission#readme"
+  "homepage": "https://github.com/davidlazarte/cordova-plugin-permissions#readme"
 }
