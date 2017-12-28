@@ -38,7 +38,7 @@
 
   <!-- ios -->
   <platform name="ios">
-    <js-module src="www/ios/permissions.js" name="Permissions">
+    <js-module src="www/ios/permissions.js" name="permissions">
       <clobbers target="cordova.plugins.permissions" />
     </js-module>
 
