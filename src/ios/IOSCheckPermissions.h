@@ -23,7 +23,8 @@
 #import <Cordova/CDVPlugin.h>
 
 @interface IOSCheckPermissions : CDVPlugin
-{}
+
+@property (nonatomic, assign) BOOL access;
 
 /**
  *  Enable logs for using the library with monitoring of your functionality. 

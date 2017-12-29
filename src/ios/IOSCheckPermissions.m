@@ -50,8 +50,8 @@ static BOOL isEnableLogs = NO;
 
 - (void)checkPermissionAccessForCalendar:(CDVInvokedUrlCommand*)command {}
 
-- (void)checkPermissionAccessForPhotos:(CDVInvokedUrlCommand *) command {
-    BOOL status = NO;
+- (void)checkPermissionAccessForPhotos:(CDVInvokedUrlCommand*)command {
+    self.access = NO;
     
     @try {
         ALAuthorizationStatus authStatus = [ALAssetsLibrary authorizationStatus];
@@ -61,10 +61,28 @@ static BOOL isEnableLogs = NO;
                 NSLog(@"- checkPermissionAccessForGallery - successBlock (status: Authorized)");
             }
             
-            status = YES;
+            self.access = YES;
         }
         else if (authStatus == AVAuthorizationStatusNotDetermined) {
-           
+           ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+            [assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll
+                                         usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+                                             // call success block only when group is nil, because here will be enumerated all device´s gallery items
+                                             NSLog(@"usingBlock");
+                                             
+                                            if(!group) {
+                                                if (isEnableLogs) {
+                                                    NSLog(@"- checkPermissionAccessForGallery - (permission granted)");
+                                                }
+                                                self.access = YES;
+                                            }
+                                         }
+                                       failureBlock:^(NSError *error) {
+                                           if (isEnableLogs) {
+                                               NSLog(@"- - checkPermissionAccessForGallery - failureBlock (%@)", [error description]);
+                                           }
+                                       }];
+            self.access = nil;
         }
         else {
             if (isEnableLogs) {
@@ -78,7 +96,7 @@ static BOOL isEnableLogs = NO;
     }
     
     NSDictionary *results = @{
-                              @"hasPermission" : [NSNumber numberWithBool:status]
+                              @"hasPermission" : [NSNumber numberWithBool:self.access]
                               };
     
     CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:results];
